@@ -1,0 +1,23 @@
+{
+  "name": "react-native-responsive-stylesheet-example",
+  "displayName": "ResponsiveStylesheet Example",
+  "expo": {
+    "name": "react-native-responsive-stylesheet-example",
+    "slug": "react-native-responsive-stylesheet-example",
+    "description": "Example app for react-native-responsive-stylesheet",
+    "privacy": "public",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "jsEngine": "hermes",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
