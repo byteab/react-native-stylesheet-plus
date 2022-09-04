@@ -1,31 +1,28 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-responsive-stylesheet';
+import { View, Text } from 'react-native';
+import { getStyleSheet } from 'react-native-responsive-stylesheet';
+
+const reStyleSheet = getStyleSheet();
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
-
+  const { styles } = reStyleSheet.useStyles(rawStyles);
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text style={styles.text}>This is some random text!!</Text>
+      <Text style={styles.text}>This is some random text!!</Text>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
+const rawStyles = reStyleSheet.createStyles({
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: ['column', 'row'],
   },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
+  text: {
+    fontSize: [20, 25],
   },
 });
