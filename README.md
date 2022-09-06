@@ -12,21 +12,22 @@ npm install react-native-stylesheet-plus
 
 ```js
 import * as React from 'react';
-import { View, Text } from 'react-native';
+
+import { View } from 'react-native';
 import { getStyleSheet } from 'react-native-stylesheet-plus';
 
 // make only one global StyleSheetPlus
 // but if you want different breakpoints for different pages
 // you can create as many StyleSheetPlus objects as you want
 export const StyleSheetPlus = getStyleSheet();
-// const StyleSheetPlus = getStyleSheet({ tablet: 700, laptop: 1100, desktop: 1500 })
+//const StyleSheetPlus = getStyleSheet({ tablet: 700, laptop: 1100, desktop: 1500 })
 
-function App() {
+export default function App() {
   const { styles } = StyleSheetPlus.useStyles(rawStyles);
+  console.log('styles', styles.container);
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>This is some random text!!</Text>
-      <Text style={styles.text}>This is some random text!!</Text>
+      <View style={styles.testView} />
     </View>
   );
 }
@@ -38,8 +39,17 @@ const rawStyles = StyleSheetPlus.createStyles({
     justifyContent: 'center',
     flexDirection: ['column', 'row'],
   },
+  testView: {
+    width: 'clamp(200, 100vw, 500)',
+    height: 100,
+    backgroundColor: 'red',
+    alignSelf: 'center',
+    fontSize: '10rem',
+    textAlign: 'justify',
+  },
   text: {
     fontSize: [20, 25],
+    width: '100vw',
   },
 });
 ```
