@@ -1,6 +1,6 @@
 # react-native-stylesheet-plus
 
-an alternative to react native stylesheet
+#### An alternative to react native stylesheet
 
 ## Installation
 
@@ -15,7 +15,9 @@ import * as React from 'react';
 import { View, Text } from 'react-native';
 import { getStyleSheet } from 'react-native-stylesheet-plus';
 
-// make only one StyleSheetPlus as a global breakpoints holder
+// make only one global StyleSheetPlus
+// but if you want different breakpoints for different pages
+// you can create as many StyleSheetPlus objects as you want
 export const StyleSheetPlus = getStyleSheet();
 // const StyleSheetPlus = getStyleSheet({ tablet: 700, laptop: 1100, desktop: 1500 })
 
