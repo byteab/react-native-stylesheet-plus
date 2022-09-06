@@ -1,12 +1,12 @@
 import * as React from 'react';
 
 import { View, Text } from 'react-native';
-import { getStyleSheet } from 'react-native-responsive-stylesheet';
+import { getStyleSheet } from 'react-native-stylesheet-plus';
 
-const reStyleSheet = getStyleSheet();
+const StyleSheetPlus = getStyleSheet();
 
 export default function App() {
-  const { styles } = reStyleSheet.useStyles(rawStyles);
+  const { styles } = StyleSheetPlus.useStyles(rawStyles);
   return (
     <View style={styles.container}>
       <Text style={styles.text}>This is some random text!!</Text>
@@ -15,7 +15,7 @@ export default function App() {
   );
 }
 
-const rawStyles = reStyleSheet.createStyles({
+const rawStyles = StyleSheetPlus.createStyles({
   container: {
     flex: 1,
     alignItems: 'center',

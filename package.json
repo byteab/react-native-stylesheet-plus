@@ -1,5 +1,5 @@
 {
-  "name": "react-native-responsive-stylesheet",
+  "name": "react-native-stylesheet-plus",
   "version": "0.1.0",
   "description": "test",
   "main": "lib/commonjs/index",
@@ -13,7 +13,7 @@
     "android",
     "ios",
     "cpp",
-    "react-native-responsive-stylesheet.podspec",
+    "react-native-stylesheet-plus.podspec",
     "!lib/typescript/example",
     "!android/build",
     "!ios/build",
@@ -35,13 +35,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/TheEhsanSarshar/react-native-responsive-stylesheet",
-  "author": "Ehsan sarshar <ehsan.herai@gmail.com> (https://github.com/TheEhsanSarshar/react-native-responsive-stylesheet)",
+  "repository": "https://github.com/TheEhsanSarshar/react-native-stylesheet-plus",
+  "author": "Ehsan sarshar <ehsan.herai@gmail.com> (https://github.com/TheEhsanSarshar/react-native-stylesheet-plus)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TheEhsanSarshar/react-native-responsive-stylesheet/issues"
+    "url": "https://github.com/TheEhsanSarshar/react-native-stylesheet-plus/issues"
   },
-  "homepage": "https://github.com/TheEhsanSarshar/react-native-responsive-stylesheet#readme",
+  "homepage": "https://github.com/TheEhsanSarshar/react-native-stylesheet-plus#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

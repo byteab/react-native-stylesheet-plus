@@ -1,11 +1,11 @@
-# react-native-responsive-stylesheet
+# react-native-stylesheet-plus
 
 a responsive alternative to react native stylesheet
 
 ## Installation
 
 ```sh
-npm install react-native-responsive-stylesheet
+npm install react-native-stylesheet-plus
 ```
 
 ## Usage
@@ -13,7 +13,7 @@ npm install react-native-responsive-stylesheet
 ```js
 import * as React from 'react';
 import { View, Text } from 'react-native';
-import { getStyleSheet } from 'react-native-responsive-stylesheet';
+import { getStyleSheet } from 'react-native-stylesheet-plus';
 
 const reStyleSheet = getStyleSheet();
 
