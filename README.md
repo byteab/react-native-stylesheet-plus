@@ -1,6 +1,6 @@
 # react-native-stylesheet-plus
 
-an alternative to react native stylesheet
+#### An alternative to react native stylesheet
 
 ## Installation
 
