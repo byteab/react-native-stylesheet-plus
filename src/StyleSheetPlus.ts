@@ -35,9 +35,9 @@ type NamedStyles<T> = {
 export const getStyleSheet = (
   breakPoints = {
     /** mobile is always -1 */
-    tablet: 549,
-    laptop: 1099,
-    desktop: 1499,
+    tablet: 550,
+    laptop: 1100,
+    desktop: 1500,
   }
 ) => {
   const createStyles = <T extends NamedStyles<T>>(styles: NamedStyles<T>) => {
@@ -87,7 +87,7 @@ const resolveStyles = <T extends NamedStyles<T>>(
           let pickedValue;
           if (eachPropertyValue instanceof Array) {
             pickedValue = eachPropertyValue[currentDeviceTypeIndex];
-            let helperIndex = currentDeviceTypeIndex;
+            let helperIndex = currentDeviceTypeIndex - 1;
             // if no value provided for specific device size fallback to values for previous sizes
             while (pickedValue === undefined) {
               pickedValue = eachPropertyValue[helperIndex--];
@@ -109,17 +109,17 @@ function pickCurrentDeviceTypeIndex(
   { tablet, laptop, desktop }: BreakPoints,
   DEVICE_WIDTH: number
 ) {
-  let currentTypeIndex = -1;
+  let currentTypeIndex = 0;
   if (DEVICE_WIDTH >= tablet) {
-    currentTypeIndex = 0;
-  }
-
-  if (DEVICE_WIDTH >= laptop) {
     currentTypeIndex = 1;
   }
 
-  if (DEVICE_WIDTH >= desktop) {
+  if (DEVICE_WIDTH >= laptop) {
     currentTypeIndex = 2;
+  }
+
+  if (DEVICE_WIDTH >= desktop) {
+    currentTypeIndex = 3;
   }
 
   return currentTypeIndex;
