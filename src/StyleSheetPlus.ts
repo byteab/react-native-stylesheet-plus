@@ -1,35 +1,12 @@
 import { useWindowDimensions, StyleSheet } from 'react-native';
 import * as React from 'react';
-import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
+import { resolveValueFromString } from './utils/resolveValueFromString';
+import type { NamedStyles } from './types';
 
 export type BreakPoints = {
   tablet: number;
   laptop: number;
   desktop: number;
-};
-
-type NamedStyles<T> = {
-  [P in keyof T]:
-    | {
-        [key in keyof ViewStyle]:
-          | ViewStyle[key]
-          | [ViewStyle[key], ViewStyle[key], ViewStyle[key]?, ViewStyle[key]?];
-      }
-    | {
-        [key in keyof TextStyle]:
-          | TextStyle[key]
-          | [TextStyle[key], TextStyle[key], TextStyle[key]?, TextStyle[key]?];
-      }
-    | {
-        [key in keyof ImageStyle]:
-          | ImageStyle[key]
-          | [
-              ImageStyle[key],
-              ImageStyle[key],
-              ImageStyle[key]?,
-              ImageStyle[key]?
-            ];
-      };
 };
 
 export const getStyleSheet = (
@@ -47,15 +24,17 @@ export const getStyleSheet = (
   const BREAK_POINT_NAMES = ['mobile', 'tablet', 'laptop', 'desktop'] as const;
 
   const useStyles = <T extends NamedStyles<T>>(rawStyles: NamedStyles<T>) => {
-    const { width } = useWindowDimensions();
+    const { width, height } = useWindowDimensions();
 
     const resolvedStyles = React.useMemo(
       () =>
         resolveStyles(
           rawStyles,
-          pickCurrentDeviceTypeIndex(breakPoints, width)
+          pickCurrentDeviceTypeIndex(breakPoints, width),
+          width,
+          height
         ),
-      [width, rawStyles]
+      [width, height, rawStyles]
     );
 
     return {
@@ -71,8 +50,12 @@ export const getStyleSheet = (
 
 const resolveStyles = <T extends NamedStyles<T>>(
   styles: NamedStyles<T>,
-  currentDeviceTypeIndex: number
+  currentDeviceTypeIndex: number,
+  deviceWidth: number,
+  deviceHeight: number
 ) => {
+  const DEVICE_WIDTH_UNIT = deviceWidth / 100;
+  const DEVICE_HEIGHT_UNIT = deviceHeight / 100;
   const resolvedStyles = (Object.keys(styles) as Array<keyof NamedStyles<T>>)
     .map((eachItemName) => {
       const eachItemProperties = styles[eachItemName];
@@ -97,6 +80,12 @@ const resolveStyles = <T extends NamedStyles<T>>(
             }
           } else {
             pickedValue = eachPropertyValue;
+          }
+          if (typeof pickedValue === 'string') {
+            pickedValue = resolveValueFromString(pickedValue, {
+              widthUnit: DEVICE_WIDTH_UNIT,
+              heightUnit: DEVICE_HEIGHT_UNIT,
+            });
           }
           return { [eachPropertyName]: pickedValue };
         })
@@ -124,12 +113,5 @@ function pickCurrentDeviceTypeIndex(
   if (DEVICE_WIDTH >= desktop) {
     currentTypeIndex = 3;
   }
-
   return currentTypeIndex;
 }
-
-getStyleSheet({
-  tablet: 11,
-  laptop: 33,
-  desktop: 43,
-});
