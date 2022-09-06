@@ -1,36 +1,12 @@
 import { useWindowDimensions, StyleSheet } from 'react-native';
 import * as React from 'react';
-import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 import { resolveValueFromString } from './utils/resolveValueFromString';
+import type { NamedStyles } from './types';
 
 export type BreakPoints = {
   tablet: number;
   laptop: number;
   desktop: number;
-};
-
-type NamedStyles<T> = {
-  [P in keyof T]:
-    | {
-        [key in keyof ViewStyle]:
-          | ViewStyle[key]
-          | [ViewStyle[key], ViewStyle[key], ViewStyle[key]?, ViewStyle[key]?];
-      }
-    | {
-        [key in keyof TextStyle]:
-          | TextStyle[key]
-          | [TextStyle[key], TextStyle[key], TextStyle[key]?, TextStyle[key]?];
-      }
-    | {
-        [key in keyof ImageStyle]:
-          | ImageStyle[key]
-          | [
-              ImageStyle[key],
-              ImageStyle[key],
-              ImageStyle[key]?,
-              ImageStyle[key]?
-            ];
-      };
 };
 
 export const getStyleSheet = (
