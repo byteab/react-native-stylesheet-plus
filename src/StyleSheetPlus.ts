@@ -85,7 +85,10 @@ const resolveStyles = <T extends NamedStyles<T>>(
         .map((eachPropertyName) => {
           const eachPropertyValue = eachItemProperties[eachPropertyName];
           let pickedValue;
-          if (eachPropertyValue instanceof Array) {
+          if (
+            eachPropertyValue instanceof Array &&
+            eachPropertyValue.length > 0
+          ) {
             pickedValue = eachPropertyValue[currentDeviceTypeIndex];
             let helperIndex = currentDeviceTypeIndex - 1;
             // if no value provided for specific device size fallback to values for previous sizes
