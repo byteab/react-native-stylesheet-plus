@@ -19,8 +19,8 @@ import { getStyleSheet } from 'react-native-stylesheet-plus';
 // make only one global StyleSheetPlus
 // but if you want different breakpoints for different pages
 // you can create as many StyleSheetPlus objects as you want
-export const StyleSheetPlus = getStyleSheet();
-//const StyleSheetPlus = getStyleSheet({ tablet: 700, laptop: 1100, desktop: 1500 })
+// export const StyleSheetPlus = getStyleSheet();
+export const StyleSheetPlus = getStyleSheet({ tablet: 700, laptop: 1100, desktop: 1500 })
 
 export default function App() {
   const { styles } = StyleSheetPlus.useStyles(rawStyles);
